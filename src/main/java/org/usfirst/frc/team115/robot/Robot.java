@@ -95,6 +95,7 @@ public class Robot extends TimedRobot {
 		// this line or comment it out.
 		if (autonomousCommand != null)
 			autonomousCommand.cancel();
+		
 	}
 
 	/**
@@ -103,6 +104,7 @@ public class Robot extends TimedRobot {
 	@Override
 	public void teleopPeriodic() {
 		Scheduler.getInstance().run();
+		SmartDashboard.putNumber("TargetX:", drivetrain.calculateTrajectory());
 	}
 
 	/**

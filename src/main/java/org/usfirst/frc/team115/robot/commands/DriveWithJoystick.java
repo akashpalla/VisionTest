@@ -15,8 +15,7 @@ public class DriveWithJoystick extends Command{
 	}
 
 	protected void execute() {
-		System.out.print("EXECUTE");
-		Robot.drivetrain.drive(Robot.oi.getThrottle(), Robot.oi.getWheel());
+		Robot.drivetrain.drive(-Robot.oi.getThrottle(), Robot.oi.getWheel());
 	}
 
 	protected boolean isFinished() {
@@ -28,7 +27,7 @@ public class DriveWithJoystick extends Command{
 	}
 
 	protected void interrupted() {
-		end();
+	//	end();
 	}
 
 }

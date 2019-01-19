@@ -14,7 +14,7 @@ public class OI {
 	JoystickButton visionTurn;
 	public OI(){
 		joystick = new Joystick(0);
-		visionTurn = new JoystickButton(joystick, 3);
+		visionTurn = new JoystickButton(joystick, 5);
 
 		visionTurn.whenPressed(new VisionTurnCommand());
 	}
@@ -24,10 +24,15 @@ public class OI {
 	}
 	
 	public double getThrottle() {
-		return joystick.getRawAxis(0);
+		return joystick.getRawAxis(5);
 	}
 	
 	public double getWheel() {
-		return joystick.getRawAxis(1);
+		return joystick.getRawAxis(0);
+	}
+
+
+	public double getThrottle2() {
+		return joystick.getRawAxis(3);
 	}
 }

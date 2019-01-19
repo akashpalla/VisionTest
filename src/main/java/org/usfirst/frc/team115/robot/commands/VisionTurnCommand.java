@@ -10,12 +10,14 @@ public class VisionTurnCommand extends Command {
 
     }
 
-    protected void initialize() {}
+    protected void initialize() {
+        Robot.drivetrain.setSetpoint(0);
+       // Robot.drivetrain.enable();
+    }
 
     protected void execute() {
-        System.out.print("VISION TURN");
-        double angle = Robot.drivetrain.calculateTrajectory();
-        Robot.drivetrain.turnP(angle);
+           double angle = Robot.drivetrain.calculateTrajectory();
+           Robot.drivetrain.driveWithTarget(Robot.oi.getThrottle2(), -angle);
     }
 
     protected boolean isFinished() {
@@ -23,6 +25,8 @@ public class VisionTurnCommand extends Command {
     }
 
     protected void end() {
+        
+      //  Robot.drivetrain.disable();
         Robot.drivetrain.setLeftRightMotorOutputs(0, 0);
     }
 }
