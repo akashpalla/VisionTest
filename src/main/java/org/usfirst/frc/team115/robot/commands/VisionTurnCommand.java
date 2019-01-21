@@ -11,7 +11,8 @@ public class VisionTurnCommand extends Command {
     }
 
     protected void initialize() {
-        Robot.drivetrain.setSetpoint(0);
+        //Robot.drivetrain.setSetpoint(0);
+        Robot.drivetrain.setCamMode(0);
        // Robot.drivetrain.enable();
     }
 
@@ -27,6 +28,7 @@ public class VisionTurnCommand extends Command {
     protected void end() {
         
       //  Robot.drivetrain.disable();
+        Robot.drivetrain.setCamMode(1);
         Robot.drivetrain.setLeftRightMotorOutputs(0, 0);
     }
 }

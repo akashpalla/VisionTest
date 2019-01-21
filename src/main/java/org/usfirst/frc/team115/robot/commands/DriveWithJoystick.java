@@ -11,11 +11,12 @@ public class DriveWithJoystick extends Command{
 	}
 	
 	protected void initialize() {
+		Robot.drivetrain.setCamMode(1);
 	
 	}
 
 	protected void execute() {
-		Robot.drivetrain.drive(-Robot.oi.getThrottle(), Robot.oi.getWheel());
+		Robot.drivetrain.drive(-Robot.oi.getThrottle(), Robot.oi.getWheel(), Robot.oi.getQuickTurn());
 	}
 
 	protected boolean isFinished() {

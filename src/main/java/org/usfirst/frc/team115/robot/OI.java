@@ -12,10 +12,11 @@ import edu.wpi.first.wpilibj.buttons.JoystickButton;
 public class OI {
 	Joystick joystick;
 	JoystickButton visionTurn;
+	JoystickButton quickTurn;
 	public OI(){
 		joystick = new Joystick(0);
-		visionTurn = new JoystickButton(joystick, 5);
-
+		visionTurn = new JoystickButton(joystick, 3);
+		quickTurn = new JoystickButton(joystick, 5);
 		visionTurn.whenPressed(new VisionTurnCommand());
 	}
 
@@ -27,6 +28,9 @@ public class OI {
 		return joystick.getRawAxis(5);
 	}
 	
+	public boolean getQuickTurn() {
+		return quickTurn.get();
+	}
 	public double getWheel() {
 		return joystick.getRawAxis(0);
 	}

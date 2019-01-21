@@ -24,7 +24,7 @@ public class Drivetrain extends PIDSubsystem {
 
 	public double targetX;
 	public static final double KTURN_P = 0.03;
-	public static final double KTURN_DRIVE_P = .01;
+	public static final double KTURN_DRIVE_P = .02;
 	public static final double KTURN_DRIVE = .01;
 
 	CANSparkMax frontLeft, backLeft, frontRight, backRight;
@@ -54,8 +54,8 @@ public class Drivetrain extends PIDSubsystem {
 		tx = table.getEntry("tx");
 	}
 	
-	public void drive(double speed, double turnRate){
-		drive.curvatureDrive(speed, turnRate, false);
+	public void drive(double speed, double turnRate, boolean quickTurn){
+		drive.curvatureDrive(speed, turnRate, quickTurn);
 	}
 
 	public void setLeftRightMotorOutputs(double left, double right) {
@@ -67,10 +67,14 @@ public class Drivetrain extends PIDSubsystem {
 		backRight.set(right);
 	}
 
+	public void setPipeline(int pipeline) {
+		NetworkTableEntry pipelineEntry = table.getEntry("Pipeline_1");
+    	pipelineEntry.setNumber(pipeline);
+	}
 	public void driveWithTarget(double throttle, double angle) {	
 	//SmartDashboard.putNumber("DriveTarget", angle);
-		double left = angle * KTURN_DRIVE_P;
-		double right = -angle * KTURN_DRIVE_P;
+		double left = -angle * KTURN_DRIVE_P;
+		double right = angle * KTURN_DRIVE_P;
 		left+=throttle;
 		right+=throttle;
 		setLeftRightMotorOutputs(left, -right);
@@ -110,6 +114,10 @@ public class Drivetrain extends PIDSubsystem {
 	
 	public void stop() {
 		drive.stopMotor();
+	}
+
+	public void setCamMode(int value) {
+		NetworkTableInstance.getDefault().getTable("limelight").getEntry("camMode").setNumber(value);
 	}
 	
 	protected void initDefaultCommand() {
